@@ -1,0 +1,1488 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mwananchi Distributors – Online Orders</title>
+  <style>
+    :root {
+      --primary: #16a085;
+      --primary-dark: #13856d;
+      --accent: #1abc9c;
+      --bg: #f5f7fa;
+      --text: #2c3e50;
+      --radius-lg: 14px;
+      --radius-md: 8px;
+      --shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.08);
+      --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(120deg, #0f766e, #14b8a6, #22c55e);
+      color: white;
+      padding: 18px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .top-bar {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.45);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .contact-block {
+      text-align: right;
+      font-size: 0.9rem;
+    }
+
+    .contact-row {
+      margin: 0;
+    }
+
+    .contact-row a {
+      color: #ecfeff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-row a:hover {
+      text-decoration: underline;
+    }
+
+    nav {
+      margin-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .nav-links a {
+      color: #e0f2f1;
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-color: #bbf7d0;
+    }
+
+    .nav-badge {
+      background: rgba(15, 118, 110, 0.5);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-badge span {
+      font-weight: 600;
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: 22px auto 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+      gap: 26px;
+      padding: 0 18px;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 26px 22px 24px;
+      box-shadow: var(--shadow-strong);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(45, 212, 191, 0.18), transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-size: 1.9rem;
+      margin: 0 0 8px;
+      color: #0f172a;
+    }
+
+    .hero-sub {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-badge {
+      background: #ecfdf5;
+      color: #047857;
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 0.8rem;
+      border: 1px solid #bbf7d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #0f766e, #22c55e);
+      color: white;
+      box-shadow: 0 10px 18px rgba(16, 185, 129, 0.30);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+    }
+
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+
+    .hero-meta {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    .hero-image-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-strong);
+      position: relative;
+      background: #0f172a;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top right, rgba(15, 23, 42, 0.8), transparent 50%);
+    }
+
+    .hero-overlay-content {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      right: 16px;
+      color: #e5e7eb;
+      font-size: 0.85rem;
+    }
+
+    .hero-overlay-content strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.78rem;
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .main-layout {
+      max-width: 1180px;
+      margin: 8px auto 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.1fr);
+      gap: 22px;
+      align-items: flex-start;
+      padding: 0 18px;
+    }
+
+    .intro {
+      background: white;
+      padding: 18px 18px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.97rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .intro strong {
+      color: #0f172a;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .category {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 16px 14px 14px;
+      flex: 0 0 calc(50% - 9px);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid #e2e8f0;
+    }
+
+    .category h2 {
+      color: var(--primary-dark);
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 6px;
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .category h2 span {
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      margin: 9px 0;
+      gap: 8px;
+    }
+
+    .product img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f1f5f9;
+      flex-shrink: 0;
+    }
+
+    .product-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .product-name {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .product-meta {
+      font-size: 0.77rem;
+      color: #6b7280;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: #0f766e;
+    }
+
+    .product-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+      font-size: 0.75rem;
+    }
+
+    .btn-add {
+      border-radius: 999px;
+      border: none;
+      padding: 5px 11px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #0f766e;
+      color: #ecfeff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 4px 10px rgba(15, 118, 110, 0.3);
+    }
+
+    .btn-add:hover {
+      background: #115e59;
+    }
+
+    .stock-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .cart {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 16px 14px 18px;
+      box-shadow: var(--shadow-strong);
+      border: 1px solid #e2e8f0;
+      position: sticky;
+      top: 110px;
+    }
+
+    .cart h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #0f172a;
+    }
+
+    .cart-pill {
+      font-size: 0.75rem;
+      background: #ecfdf5;
+      border-radius: 999px;
+      padding: 2px 8px;
+      color: #166534;
+    }
+
+    .cart-empty {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin: 10px 0 6px;
+    }
+
+    .cart-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px;
+      max-height: 220px;
+      overflow-y: auto;
+      border-radius: 8px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) auto;
+      gap: 4px 10px;
+      padding: 7px 9px;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #e5e7eb;
+      align-items: center;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-name {
+      font-weight: 600;
+    }
+
+    .cart-meta {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    .cart-qty {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+    }
+
+    .cart-qty button {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: none;
+      background: #0f766e;
+      color: white;
+      cursor: pointer;
+      padding: 0;
+      font-size: 0.8rem;
+    }
+
+    .cart-qty button:hover {
+      background: #115e59;
+    }
+
+    .cart-remove {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .cart-footer {
+      border-top: 1px dashed #e5e7eb;
+      padding-top: 8px;
+      margin-top: 8px;
+      font-size: 0.83rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 2px 0;
+    }
+
+    .summary-row.total {
+      font-weight: 700;
+      margin-top: 2px;
+      font-size: 0.9rem;
+      color: #0f172a;
+    }
+
+    .order-form {
+      margin-top: 10px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.8rem;
+    }
+
+    .order-form label {
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+
+    .order-form input,
+    .order-form textarea,
+    .order-form select {
+      width: 100%;
+      padding: 6px 7px;
+      border-radius: 7px;
+      border: 1px solid #d1d5db;
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+
+    .order-form textarea {
+      min-height: 56px;
+      resize: vertical;
+    }
+
+    .order-form small {
+      color: #6b7280;
+      font-size: 0.7rem;
+    }
+
+    .btn-checkout {
+      margin-top: 8px;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: #22c55e;
+      color: #022c22;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 10px 18px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn-checkout:disabled {
+      background: #d1d5db;
+      color: #6b7280;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .btn-checkout:not(:disabled):hover {
+      filter: brightness(1.06);
+    }
+
+    .reviews {
+      background: #f0f9ff;
+      padding: 34px 18px 40px;
+      text-align: center;
+      margin-top: 10px;
+      border-top: 1px solid #dbeafe;
+    }
+
+    .reviews h2 {
+      color: #0f172a;
+      margin-bottom: 24px;
+      font-size: 1.35rem;
+    }
+
+    .review-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .review {
+      background: #ffffff;
+      padding: 18px 16px;
+      border-radius: 12px;
+      width: 260px;
+      max-width: 100%;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+      font-size: 0.85rem;
+      text-align: left;
+      border: 1px solid #dbeafe;
+    }
+
+    .review strong {
+      display: block;
+      margin-top: 8px;
+      color: #0f172a;
+    }
+
+    footer {
+      background: #020617;
+      color: #cbd5f5;
+      text-align: center;
+      padding: 22px 18px 18px;
+      margin-top: 0;
+      border-top: 1px solid #111827;
+    }
+
+    .socials {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 8px;
+    }
+
+    .socials a {
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.88rem;
+    }
+
+    .socials img {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      object-fit: cover;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 30px;
+      line-height: 60px;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      filter: brightness(1.05);
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .main-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .category {
+        flex: 1 1 100%;
+      }
+
+      header {
+        padding: 14px 16px 12px;
+      }
+
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-block {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        padding: 20px 16px;
+      }
+
+      .hero-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="top-bar">
+      <div class="brand-block">
+        <div class="brand-logo">
+          <img src="Best Roofing Sheet Suppliers In Kerala - Roofmate.jpeg" alt="Mwananchi Distributors logo">
+        </div>
+        <div>
+          <h1>Mwananchi Distributors</h1>
+          <p class="tagline">Wholesale & retail construction materials – free delivery across Kenya</p>
+        </div>
+      </div>
+      <div class="contact-block">
+        <p class="contact-row">Call / WhatsApp: <a href="tel:+254780078024">+254 780 078 024</a></p>
+        <p class="contact-row">Email: <a href="mailto:mwananchidistributars01@gmail.com">mwananchidistributars01@gmail.com</a></p>
+        <p class="contact-row">Open: Mon–Sat, 8:00am – 6:00pm</p>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-inner">
+        <div class="nav-links">
+          <a href="#catalog">Products</a>
+          <a href="#how-to-order">How to Order</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-badge">
+          <span>Same–day Nairobi delivery</span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <div>
+        <h2 class="hero-title">Order construction materials online – delivered to your site.</h2>
+        <p class="hero-sub">
+          Barbed wire, cement, square tubes, iron sheets, water tanks, nails, steel and more.
+          Send your order via WhatsApp in one click – we confirm stock and delivery instantly.
+        </p>
+        <div class="hero-badges">
+          <span class="hero-badge">✓ Free delivery within town</span>
+          <span class="hero-badge">✓ Trusted by contractors countrywide</span>
+          <span class="hero-badge">✓ Same–day dispatch on paid orders</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#catalog" class="btn-primary">Start an order</a>
+          <a href="https://wa.me/254780078024?text=Hello%20Mwananchi%20Distributors%2C%20I%20would%20like%20to%20inquire%20about%20construction%20materials." target="_blank" class="btn-secondary">
+            Chat on WhatsApp
+          </a>
+        </div>
+        <p class="hero-meta">
+          Select items below, fill in your details, and click <strong>Send order on WhatsApp</strong>. No payment is taken on the website.
+        </p>
+      </div>
+    </div>
+    <div class="hero-image-card">
+      <img class="hero-image" src="ironsheets1.jpg" alt="Construction materials – iron sheets and roofing" />
+      <div class="hero-overlay"></div>
+      <div class="hero-overlay-content">
+        <strong>Everything you need for your next project</strong>
+        <span>We supply genuine, durable building materials directly from leading manufacturers.</span>
+        <div class="hero-stats">
+          <span class="hero-stat">10+ main product lines</span>
+          <span class="hero-stat">Nationwide deliveries</span>
+          <span class="hero-stat">Bulk & project pricing available</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-layout">
+    <section>
+      <div class="intro" id="catalog">
+        <p>
+          <strong>Welcome to Mwananchi Distributors</strong> – your trusted partner for quality construction materials at
+          unbeatable prices. Choose the items you need below, add them to your quotation cart, and send the order to us via WhatsApp.
+          Our sales team will confirm stock, final discounts and delivery time.
+        </p>
+      </div>
+
+      <div class="categories">
+        <div class="category">
+          <h2>Barbed Wire & Mesh <span>Fencing & reinforcement</span></h2>
+          <div class="product">
+            <img src="barbed wire1.jpg" alt="Barbed wire 1 roll">
+            <div class="product-main">
+              <span class="product-name">Barbed wire – 1 roll</span>
+              <div class="product-meta">
+                <span class="product-price">KES 2,200</span> · Heavy–duty galvanized
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Barbed wire – 1 roll" data-price="2200">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="chicken wire mesh.jpg" alt="Barbed wire 2">
+            <div class="product-main">
+              <span class="product-name">Barbed wire – extra strength</span>
+              <div class="product-meta">
+                <span class="product-price">KES 2,800</span> · For perimeter fencing
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Barbed wire – extra strength" data-price="2800">+ Add</button>
+              <span class="stock-tag">Popular</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="mesh brc.jpg" alt="Mesh BRC A610">
+            <div class="product-main">
+              <span class="product-name">Mesh BRC A610</span>
+              <div class="product-meta">
+                <span class="product-price">KES 4,000</span> · Standard sheet
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Mesh BRC A610" data-price="4000">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="mesh brc1.jpg" alt="Mesh BRC A98">
+            <div class="product-main">
+              <span class="product-name">Mesh BRC A98</span>
+              <div class="product-meta">
+                <span class="product-price">KES 4,500</span> · Heavy reinforcement mesh
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Mesh BRC A98" data-price="4500">+ Add</button>
+              <span class="stock-tag">Project use</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Cement <span>Top brands</span></h2>
+          <div class="product">
+            <img src="cement1.jpg" alt="Simba cement">
+            <div class="product-main">
+              <span class="product-name">Simba cement 50kg</span>
+              <div class="product-meta">
+                <span class="product-price">KES 950</span> · General construction
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Simba cement 50kg" data-price="950">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="cement2.jpg" alt="Bamburi cement">
+            <div class="product-main">
+              <span class="product-name">Bamburi cement 50kg</span>
+              <div class="product-meta">
+                <span class="product-price">KES 700</span> · Trusted quality
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Bamburi cement 50kg" data-price="700">+ Add</button>
+              <span class="stock-tag">Limited</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="cement3.jpg" alt="White cement">
+            <div class="product-main">
+              <span class="product-name">White cement 25kg</span>
+              <div class="product-meta">
+                <span class="product-price">KES 850</span> · Decorative & tiling
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="White cement 25kg" data-price="850">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="cement4.jpg" alt="Ordinary cement">
+            <div class="product-main">
+              <span class="product-name">Ordinary cement 50kg</span>
+              <div class="product-meta">
+                <span class="product-price">KES 700</span> · Everyday building
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Ordinary cement 50kg" data-price="700">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Square Tubes <span>Structural steel</span></h2>
+          <div class="product">
+            <img src="square tube1.jpg" alt="3x3x2.5mm square tube">
+            <div class="product-main">
+              <span class="product-name">3×3×2.5mm square tube</span>
+              <div class="product-meta">
+                <span class="product-price">KES 3,600</span> · Structural use
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="3x3x2.5mm square tube" data-price="3600">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="square tube 4.jpg" alt="4x4x2mm square tube">
+            <div class="product-main">
+              <span class="product-name">4×4×2mm square tube</span>
+              <div class="product-meta">
+                <span class="product-price">KES 6,000</span> · Heavy frame work
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="4x4x2mm square tube" data-price="6000">+ Add</button>
+              <span class="stock-tag">Project use</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="square tube3.jpg" alt="4x4x3mm square tube">
+            <div class="product-main">
+              <span class="product-name">4×4×3mm square tube</span>
+              <div class="product-meta">
+                <span class="product-price">KES 6,200</span> · Extra heavy duty
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="4x4x3mm square tube" data-price="6200">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="square tube 5.jpg" alt="2x2 square tube">
+            <div class="product-main">
+              <span class="product-name">2×2 square tube</span>
+              <div class="product-meta">
+                <span class="product-price">KES 600</span> · Light structures
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="2x2 square tube" data-price="600">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Iron Sheets <span>Roofing solutions</span></h2>
+
+          <div class="product">
+            <img src="Box profile Mabati guage 28 500 per meter.jpg" alt="Box profile gauge 28">
+            <div class="product-main">
+              <span class="product-name">Box profile gauge 28</span>
+              <div class="product-meta">
+                <span class="product-price">KES 500 / m</span> · Premium finish
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Box profile gauge 28" data-price="500">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="iron sheets2.jpg" alt="Box profile gauge 30">
+            <div class="product-main">
+              <span class="product-name">Box profile gauge 30</span>
+              <div class="product-meta">
+                <span class="product-price">KES 470 / m</span> · Standard roofing
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Box profile gauge 30" data-price="470">+ Add</button>
+              <span class="stock-tag">Popular</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="Versatile mabati guage 28 650 per meter .jpg" alt="Versatile gauge 28">
+            <div class="product-main">
+              <span class="product-name">Versatile gauge 28</span>
+              <div class="product-meta">
+                <span class="product-price">KES 650 / m</span> · Profiled roofing
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Versatile gauge 28" data-price="650">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="ironsheet4.jpg" alt="Versatile gauge 30">
+            <div class="product-main">
+              <span class="product-name">Versatile gauge 30</span>
+              <div class="product-meta">
+                <span class="product-price">KES 555 / m</span> · Budget roofing
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Versatile gauge 30" data-price="555">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="Romantile guage 28 640 per meter .jpg" alt="Romantile gauge 28">
+            <div class="product-main">
+              <span class="product-name">Romantile gauge 28</span>
+              <div class="product-meta">
+                <span class="product-price">KES 640 / m</span> · Tile profile
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Romantile gauge 28" data-price="640">+ Add</button>
+              <span class="stock-tag">Premium</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="ironsheets3.jpg" alt="Romantile gauge 30">
+            <div class="product-main">
+              <span class="product-name">Romantile gauge 30</span>
+              <div class="product-meta">
+                <span class="product-price">KES 550 / m</span> · Cost–effective tile look
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Romantile gauge 30" data-price="550">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="Corruguted iron sheet 28 guage 420 per meter.jpg" alt="Corrugated 28 gauge">
+            <div class="product-main">
+              <span class="product-name">Corrugated gauge 28</span>
+              <div class="product-meta">
+                <span class="product-price">KES 420 / m</span> · Classic corrugated
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Corrugated gauge 28" data-price="420">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="ironsheets1.jpg" alt="Corrugated 30 gauge">
+            <div class="product-main">
+              <span class="product-name">Corrugated gauge 30</span>
+              <div class="product-meta">
+                <span class="product-price">KES 390 / m</span> · Light roofing
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Corrugated gauge 30" data-price="390">+ Add</button>
+              <span class="stock-tag">Budget</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="Ordinary mabati 30 guage 320 per meter .jpg" alt="Ordinary 30 gauge">
+            <div class="product-main">
+              <span class="product-name">Ordinary gauge 30</span>
+              <div class="product-meta">
+                <span class="product-price">KES 320 / m</span> · Entry level
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Ordinary gauge 30" data-price="320">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Water Tanks <span>Durable storage</span></h2>
+          <div class="product">
+            <img src="tank1.jpg" alt="1000L tank">
+            <div class="product-main">
+              <span class="product-name">1000L water tank</span>
+              <div class="product-meta">
+                <span class="product-price">KES 5,500</span> · Domestic use
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="1000L water tank" data-price="5500">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="tank3.jpg" alt="2000L tank">
+            <div class="product-main">
+              <span class="product-name">2000L water tank</span>
+              <div class="product-meta">
+                <span class="product-price">KES 10,500</span> · Household & small projects
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="2000L water tank" data-price="10500">+ Add</button>
+              <span class="stock-tag">Popular</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="tank5.jpg" alt="3000L tank">
+            <div class="product-main">
+              <span class="product-name">3000L water tank</span>
+              <div class="product-meta">
+                <span class="product-price">KES 14,500</span> · Commercial & farms
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="3000L water tank" data-price="14500">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="tank7.jpg" alt="4000L tank">
+            <div class="product-main">
+              <span class="product-name">4000L water tank</span>
+              <div class="product-meta">
+                <span class="product-price">KES 18,500</span> · Large projects
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="4000L water tank" data-price="18500">+ Add</button>
+              <span class="stock-tag">Order to reserve</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Nails & Fasteners <span>Fixing solutions</span></h2>
+          <div class="product">
+            <img src="ordinary nails.jpg" alt="Ordinary nails">
+            <div class="product-main">
+              <span class="product-name">Ordinary nails – 1kg</span>
+              <div class="product-meta">
+                <span class="product-price">KES 260</span> · General use
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Ordinary nails – 1kg" data-price="260">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="pure nails.jpg" alt="Pure nails">
+            <div class="product-main">
+              <span class="product-name">Pure nails – 1kg</span>
+              <div class="product-meta">
+                <span class="product-price">KES 300</span> · Anti–rust finish
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Pure nails – 1kg" data-price="300">+ Add</button>
+              <span class="stock-tag">Popular</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="round shaped nails.jpg" alt="Roofing nails">
+            <div class="product-main">
+              <span class="product-name">Round headed roofing nails</span>
+              <div class="product-meta">
+                <span class="product-price">KES 320</span> · With washers
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Round headed roofing nails" data-price="320">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+
+          <div class="product">
+            <img src="steel bolts.jpg" alt="Steel bolts">
+            <div class="product-main">
+              <span class="product-name">Steel bolts (assorted)</span>
+              <div class="product-meta">
+                <span class="product-price">KES 350</span> · Per kg, assorted sizes
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add" data-name="Steel bolts (assorted)" data-price="350">+ Add</button>
+              <span class="stock-tag">In stock</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="cart">
+      <h2>
+        Quotation cart
+        <span class="cart-pill"><span id="cart-count">0</span> items</span>
+      </h2>
+      <p class="cart-empty" id="cart-empty-text">No items added yet. Select products on the left and click <strong>+ Add</strong>.</p>
+
+      <ul class="cart-list" id="cart-list"></ul>
+
+      <div class="cart-footer">
+        <div class="summary-row">
+          <span>Items total</span>
+          <span id="summary-items">KES 0</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated delivery</span>
+          <span id="summary-delivery">To be confirmed</span>
+        </div>
+        <div class="summary-row total">
+          <span>Approximate total</span>
+          <span id="summary-total">KES 0</span>
+        </div>
+
+        <form class="order-form" id="order-form">
+          <div>
+            <label for="customer-name">Your name</label>
+            <input type="text" id="customer-name" placeholder="e.g. John Mwangi" required />
+          </div>
+          <div>
+            <label for="customer-phone">Phone number</label>
+            <input type="tel" id="customer-phone" placeholder="e.g. 07xx xxx xxx" required />
+          </div>
+          <div>
+            <label for="customer-location">Delivery location</label>
+            <input type="text" id="customer-location" placeholder="Estate / town / site name" required />
+          </div>
+          <div>
+            <label for="customer-notes">Additional notes (optional)</label>
+            <textarea id="customer-notes" placeholder="e.g. Required on Friday morning, site accessible by lorry."></textarea>
+            <small>Final price and delivery fee will be confirmed by our sales team on WhatsApp.</small>
+          </div>
+        </form>
+
+        <button id="checkout-btn" class="btn-checkout" disabled>
+          Send order on WhatsApp
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <section class="intro" id="how-to-order">
+    <p><strong>How online ordering works:</strong></p>
+    <ol style="margin: 6px 0 0 18px; padding-left: 0; font-size: 0.88rem; color: #4b5563;">
+      <li>Select the materials and quantities you need and add them to your cart.</li>
+      <li>Fill in your name, phone number and delivery location.</li>
+      <li>Click <strong>Send order on WhatsApp</strong> – your full order is prepared in a WhatsApp message.</li>
+      <li>Our team reviews your order, confirms availability, delivery cost and payment details before dispatch.</li>
+    </ol>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="review-grid">
+      <div class="review"><p>"Fast delivery and great prices. Highly recommend!"</p><strong>- James, Nairobi</strong></div>
+      <div class="review"><p>"The iron sheets were top quality. My roof looks amazing!"</p><strong>- Aisha, Mombasa</strong></div>
+      <div class="review"><p>"Excellent customer service and reliable delivery."</p><strong>- Peter, Kisumu</strong></div>
+      <div class="review"><p>"Affordable and durable water tanks. Thank you!"</p><strong>- Mercy, Nakuru</strong></div>
+      <div class="review"><p>"I always buy my cement from Mwananchi. Never disappoints."</p><strong>- Brian, Eldoret</strong></div>
+      <div class="review"><p>"Reliable supplier with great customer care. I always recommend them to friends."</p><strong>- Janet, Thika</strong></div>
+    </div>
+  </section>
+
+  <a class="whatsapp-float" href="https://wa.me/254780078024?text=Hello%20Mwananchi%20Distributors%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank">💬</a>
+
+  <footer id="contact">
+    <p>Follow us on:
+      <span class="socials">
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="ig.jpg" alt="Instagram"> Instagram
+        </a>
+        <a href="https://www.facebook.com" target="_blank">
+          <img src="fb.png" alt="Facebook"> Facebook
+        </a>
+        <a href="https://wa.me/254780078024" target="_blank">
+          <img src="whatsapp.jpg" alt="WhatsApp"> WhatsApp
+        </a>
+        <a href="https://www.tiktok.com" target="_blank">
+          <img src="x.jpg" alt="TikTok"> TikTok
+        </a>
+      </span>
+    </p>
+    <p>&copy; 2025 Mwananchi Distributors | All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      const cart = [];
+      const cartList = document.getElementById('cart-list');
+      const cartCount = document.getElementById('cart-count');
+      const cartEmptyText = document.getElementById('cart-empty-text');
+      const summaryItems = document.getElementById('summary-items');
+      const summaryTotal = document.getElementById('summary-total');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      function formatCurrency(value) {
+        return 'KES ' + value.toLocaleString('en-KE');
+      }
+
+      function updateCartUI() {
+        cartList.innerHTML = '';
+        let total = 0;
+        let count = 0;
+
+        cart.forEach((item, index) => {
+          total += item.price * item.qty;
+          count += item.qty;
+
+          const li = document.createElement('li');
+          li.className = 'cart-item';
+          li.innerHTML = `
+            <div>
+              <div class="cart-name">${item.name}</div>
+              <div class="cart-meta">${formatCurrency(item.price)} each</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="cart-qty">
+                <button type="button" data-action="decrease" data-index="${index}">-</button>
+                <span>${item.qty}</span>
+                <button type="button" data-action="increase" data-index="${index}">+</button>
+              </div>
+              <div style="margin-top:4px;">
+                <span>${formatCurrency(item.price * item.qty)}</span>
+                <button type="button" class="cart-remove" data-action="remove" data-index="${index}">×</button>
+              </div>
+            </div>
+          `;
+          cartList.appendChild(li);
+        });
+
+        cartCount.textContent = count;
+        summaryItems.textContent = formatCurrency(total);
+        summaryTotal.textContent = formatCurrency(total);
+
+        const hasItems = cart.length > 0;
+        cartEmptyText.style.display = hasItems ? 'none' : 'block';
+        checkoutBtn.disabled = !hasItems;
+      }
+
+      document.addEventListener('click', function (e) {
+        const addBtn = e.target.closest('.btn-add');
+        if (addBtn) {
+          const name = addBtn.getAttribute('data-name');
+          const price = parseInt(addBtn.getAttribute('data-price'), 10) || 0;
+          const existing = cart.find((item) => item.name === name);
+          if (existing) {
+            existing.qty += 1;
+          } else {
+            cart.push({ name, price, qty: 1 });
+          }
+          updateCartUI();
+        }
+
+        const qtyBtn = e.target.closest('.cart-qty button, .cart-remove');
+        if (qtyBtn && qtyBtn.dataset.index != null) {
+          const index = parseInt(qtyBtn.dataset.index, 10);
+          const action = qtyBtn.dataset.action;
+
+          if (action === 'increase') {
+            cart[index].qty += 1;
+          } else if (action === 'decrease') {
+            cart[index].qty -= 1;
+            if (cart[index].qty <= 0) {
+              cart.splice(index, 1);
+            }
+          } else if (action === 'remove') {
+            cart.splice(index, 1);
+          }
+          updateCartUI();
+        }
+      });
+
+      checkoutBtn.addEventListener('click', function () {
+        if (!cart.length) return;
+
+        const nameInput = document.getElementById('customer-name');
+        const phoneInput = document.getElementById('customer-phone');
+        const locationInput = document.getElementById('customer-location');
+        const notesInput = document.getElementById('customer-notes');
+
+        if (!nameInput.value.trim() || !phoneInput.value.trim() || !locationInput.value.trim()) {
+          alert('Please fill in your name, phone number and delivery location.');
+          return;
+        }
+
+        let message = 'Hello Mwananchi Distributors,%0A%0AI would like to place the following order:%0A';
+
+        cart.forEach((item) => {
+          message += `%0A- ${item.name} x ${item.qty} = ${formatCurrency(item.price * item.qty)}`;
+        });
+
+        const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        message += `%0A%0AApproximate total (excluding delivery): ${formatCurrency(total)}%0A`;
+
+        message += `%0ACustomer details:%0AName: ${encodeURIComponent(nameInput.value.trim())}`;
+        message += `%0APhone: ${encodeURIComponent(phoneInput.value.trim())}`;
+        message += `%0ALocation: ${encodeURIComponent(locationInput.value.trim())}`;
+
+        if (notesInput.value.trim()) {
+          message += `%0AAdditional notes: ${encodeURIComponent(notesInput.value.trim())}`;
+        }
+
+        message += '%0A%0APlease confirm availability, final price and delivery time.';
+
+        const whatsappUrl = `https://wa.me/254780078024?text=${message}`;
+        window.open(whatsappUrl, '_blank');
+      });
+    })();
+  </script>
+
+</body>
+</html>
